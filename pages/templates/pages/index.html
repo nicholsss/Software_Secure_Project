@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>Welcome to the home page!</h1>
+
+    <table>
+        <tr>
+            <th style="text-align:left">Username:
+            <td>{{user.username}}
+        <tr>
+            <th style="text-align:left">All Blogs:
+    </table>
+
+    <form action='logout/' method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout"/>
+    </form>
+
+</body>
+
+</html>
