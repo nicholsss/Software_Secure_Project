@@ -25,7 +25,7 @@ CODE POINT HERE (View all user, logged in views.)
 https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L23
 
 
-In this version the application users can access to adding page without being logged in, in the application by going to /add URL. This should not be allowed because without logging in user doesn't need to have access to adding page.
+In this version the application users can access to adding page without being logged in, in the application by going to /add URL. This should not be allowed because without logging in user doesn't need to have access to adding page. It's mainly good approach to restrict user from accessing funtionalities that they dont have use for, if they are not logged in.
 
 To fix these kind problems adding we can add @login_required() decorator to top of the function view. With @login_required() it is needed to be authenticated to have permission for to view the wanted function view, in this situtation the addNote view
 
@@ -34,9 +34,9 @@ To fix these kind problems adding we can add @login_required() decorator to top 
 
 https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L32
 
-Currently in the application all the users notes can be accessed with user/<username>/notes URL. This component is brings vulnerability to the application, because the notes should be personal, and no one else should have not have acces to them than the writer of the note. There are few ways to fix this problem. 
+Currently in the application all the users notes can be accessed with user/<username>/notes URL. This component is bringing vulnerability to the application, because the notes should be personal, and no one else should have not have acces to them than the writer of the notes. 
 
-One is to delete the whole view from the user, because all the notes are already displayed when logged in. Otherway is to make use of request.session and check if the user is actually logged to the user that they try to access. It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
+There are few ways to fix this problem. One is to delete the whole view from the user, because all the notes are already displayed when logged in. Otherway is to make use of request.session and check if the user is actually logged to the user that they try to access. It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
 
 
 ### FLAW 5: A03:2021-Injection
