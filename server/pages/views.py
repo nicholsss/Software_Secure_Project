@@ -21,14 +21,13 @@ def loginView(request):
 
 
 def addNoteView(request):
-    if request.method == 'POST':
-        content = request.POST.get('content')
-        user = request.user
-        note = Note.objects.create(user=user, content=content)
-        note.save()
-        return redirect('home')
-    else:
-        return render(request, 'pages/index.html')
+
+    content = request.POST.get('content')
+    user = request.user
+    note = Note.objects.create(user=user, content=content)
+    note.save()
+    return redirect('home')
+
     
 def userNotesView(request, username):
     user = User.objects.get(username=username)
