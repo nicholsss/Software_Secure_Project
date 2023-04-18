@@ -18,7 +18,23 @@
 
     <form action='logout/' method="POST">
         {% csrf_token %}
-        <input type="submit" value="Logout"/>
+        <input type="submit" value="Logout" />
+    </form>
+    {% if notes %}
+    <ul>
+        {% for note in notes %}
+        <li>{{ note.content }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No notes found.</p>
+    {% endif %}
+
+    <form action='add/' method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        Note:
+        <input type="text" name="content"><br>
+        <input type="submit" value="Save">
     </form>
 
 </body>

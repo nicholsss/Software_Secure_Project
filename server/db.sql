@@ -125,6 +125,7 @@ INSERT INTO django_session VALUES('1vdi4pxfed82npgzqpiyi5m4bnuxfiyz','NDdhMTJjZm
 INSERT INTO django_session VALUES('4cvojflcdi2lh9ldl314qai3smecyrtd','OTc1NmFhYjM3MjNmYzRjMGExMjBkOWQ0ZTNmNjNjMjk0M2UyNTZjYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyZTJjOTVkOGVhNTA5Mzg3YWRlN2U2NjdlYmYzY2ZhMzM2N2JhNmVhIn0=','2020-07-30 10:41:35.409016');
 CREATE TABLE IF NOT EXISTS "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "first_name" varchar(150) NOT NULL);
 INSERT INTO auth_user VALUES(1,'pbkdf2_sha256$180000$7v3eKZ6vx96i$YfEQLn4F/kv1PTIF3IFomRi8Yzsmp+ZGJtd9GOsT9rg=','2020-07-16 10:41:35.407141',1,'admin','','admin@admin.gov',1,1,'2020-07-16 00:46:05.310429','');
+INSERT INTO auth_user VALUES(2,'pbkdf2_sha256$180000$aaWhCT3CauGc$tlkGWtghox6+oHaDY4MXTaZYJJXWFhsoGyJAqRhc/uc=','2020-07-18 23:05:32.676729',0,'bob','','',0,1,'2020-07-18 23:04:45.060969','');
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('django_migrations',18);
 INSERT INTO sqlite_sequence VALUES('django_admin_log',0);
