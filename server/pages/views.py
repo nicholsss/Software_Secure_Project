@@ -6,6 +6,7 @@ from .models import Blog
 
 def loginView(request):
     form = AuthenticationForm()
+    print('hello')
     return render(request, 'pages/login.html', {'form': form})
 
 def addBlogPost(request):
