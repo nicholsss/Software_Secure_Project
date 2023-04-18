@@ -3,12 +3,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Note
 from django.contrib.auth.models import User
+import logging
 
+logger = logging.getLogger(__name__)
 
 @login_required
 def homePageView(request):
     user = request.user
-    print(user)
+    logger.info(f"User {user.username} accessed the home page")
     notes = Note.objects.filter(user=user)
     return render(request, 'pages/index.html', {'notes': notes})
 

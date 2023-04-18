@@ -19,3 +19,10 @@ In this version the application users can access to adding page without being lo
 To fix these kind problems adding we can add @login_required() decorator to top of the function view. With @login_required() it is needed to be authenticated to have permission for to view the wanted function view, in this situtation the add view
 
 
+### Flaw 4: A06:2021-Vulnerable and Outdated Components
+
+(link to see other user notes)
+
+Currently in the application all the users notes can be accessed with user/<username>/notes URL. This component is brings vulnerability to the application, because the notes should be personal, and no one else should have not have acces to them than the writer of the note. There are few ways to fix this problem. 
+
+One is to delete the whole view from the user, because all the notes are already displayed when logged in. Otherway is to make use of request.session and check if the user is actually logged to the user that they try to access. It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
