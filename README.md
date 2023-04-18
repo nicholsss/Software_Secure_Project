@@ -5,6 +5,11 @@ In here we are using the basic username which is admin. Even thought the passwor
 ### Flaw 2: A09:2021-Security Logging and Monitoring Failures 
 
 
+(Point to debug settings)
+Currently in we have debug activated in the application, which means that if the application crashes it provides the user detailed error messages, stack traces and more information about the cause of crash. All these informations may contain sensitive data, that we dont want to be showed to the user. So turning the Debug mode off we get rid of detailed the detailed messages, that might contains sensitive information.
+
+To fix this problem DEBUG mode can simply be disabled. ```DEBUG=false``` Debug mode should only be used in development, and not in production environment.
+
 ### Flaw 3: A01:2021-Broken Access Control
 
 CODE POINT HERE (View all user, logged in views.)

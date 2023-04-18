@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 @login_required
 def homePageView(request):
     user = request.user
+    print(user)
     notes = Note.objects.filter(user=user)
     return render(request, 'pages/index.html', {'notes': notes})
 

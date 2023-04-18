@@ -3,6 +3,10 @@
 
 <head>
     <title>Home Page</title>
+    <script>
+        console.log("User: {{ user }}");
+    </script>
+    
 </head>
 
 <body>
@@ -30,13 +34,13 @@
     <p>No notes found.</p>
     {% endif %}
 
+
     <form action='add/' method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         Note:
         <input type="text" name="content"><br>
         <input type="submit" value="Save">
     </form>
-
 </body>
 
 </html>
