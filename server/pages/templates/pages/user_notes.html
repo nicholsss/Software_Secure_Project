@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Notes</title>
+</head>
+<body>
+	<h1>User Notes</h1>
+	<h2>{{username}}'s notes:</h2>
+	{% if notes %}
+		<ul>
+		{% for note in notes %}
+			<li>{{ note.content }}</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No notes found.</p>
+	{% endif %}
+</body>
+</html>

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Note
+from django.contrib.auth.models import User
+
 
 @login_required
 def homePageView(request):
@@ -24,6 +26,11 @@ def addNoteView(request):
         return redirect('home')
     else:
         return render(request, 'pages/index.html')
+    
+def userNotesView(request, username):
+    user = User.objects.get(username=username)
+    notes = Note.objects.filter(user=user)
+    return render(request, 'pages/user_notes.html', {'user': user, 'notes': notes})
     
 #def homePageView(request):
    # if request.user.is_authenticated:
