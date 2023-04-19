@@ -18,10 +18,7 @@ def loginView(request):
     form = AuthenticationForm()
     return render(request, 'pages/login.html', {'form': form})
 
-
-
 def addNoteView(request):
-
     content = request.POST.get('content')
     user = request.user
     note = Note.objects.create(user=user, content=content)
@@ -33,16 +30,4 @@ def userNotesView(request, username):
     user = User.objects.get(username=username)
     notes = Note.objects.filter(user=user)
     return render(request, 'pages/user_notes.html', {'user': user, 'notes': notes})
-    
-#def homePageView(request):
-   # if request.user.is_authenticated:
-      #  user = request.user
-     #   blogs = Blog.objects.filter(user=user)
-     #   return render(request, 'pages/index.html', {'blogs': blogs})
-  #  else:
-  #      return render(request, 'pages/index.html')
-    
 
-
-
-# Create your views here.
