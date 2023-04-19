@@ -1,3 +1,11 @@
+1. Create virtual environment: python3 -m venv myenv
+2. activate myenv: source myenv/bin/activate
+3. install packages: pip install -r requirements.txt
+4. start locally: python3 manage.py runserver
+5. available at localhost:8000
+
+
+
 ### FLAW 1: A07:2021-Identification and Authentication Failures 
 
 1. https://github.com/nicholsss/Software_Secure_Project/blob/cada1cda76bf1914afc04c4f56b482fd3844bfe1/server/db.sql#L127
