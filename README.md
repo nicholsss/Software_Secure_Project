@@ -3,6 +3,7 @@
 3. install packages: pip install -r requirements.txt
 4. start locally: python3 manage.py runserver
 5. available at localhost:8000
+6. Two accounts in use. username: admin Password: admin. Second account username:bob  password:sieni
 
 
 
