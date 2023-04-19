@@ -20,10 +20,13 @@ def loginView(request):
 
 def addNoteView(request):
     content = request.POST.get('content')
-    user = request.user
-    note = Note.objects.create(user=user, content=content)
-    note.save()
-    return redirect('home')
+    if request.user.is_authenticated:
+        user = request.user
+        note = Note.objects.create(user=user, content=content)
+        note.save()
+        return redirect('home')
+    else:
+        return render(request, 'pages/index.html')
 
     
 def userNotesView(request, username):
