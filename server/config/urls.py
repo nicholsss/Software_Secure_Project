@@ -18,7 +18,7 @@ from django.urls import include, path
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # Change url to something else than /admin/
     path('login/', LoginView.as_view(template_name='pages/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('', include('server.pages.urls')),
