@@ -12,7 +12,7 @@ Github repo: https://github.com/nicholsss/Software_Secure_Project
 ### FLAW 1: A07:2021-Identification and Authentication Failures 
 
 1. https://github.com/nicholsss/Software_Secure_Project/blob/cada1cda76bf1914afc04c4f56b482fd3844bfe1/server/db.sql#L127
-2. https://github.com/nicholsss/Software_Secure_Project/blob/cada1cda76bf1914afc04c4f56b482fd3844bfe1/server/config/urls.py#L21
+2. https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/config/urls.py#L21
 3. https://github.com/nicholsss/Software_Secure_Project/blob/cada1cda76bf1914afc04c4f56b482fd3844bfe1/server/config/settings.py#L33
 
 In authentication we are using basic username whic his admin. Even thought the password is encrypted ,it is still vulnerable to brute force attacks. In hackpassword.py we brute force throught some passwords that are given in candidates.txt might give us access to the admin panel. admin panel can be accessed by ```/admin/``` URL which makes is quite easy target for attackers. 
@@ -42,7 +42,7 @@ https://github.com/nicholsss/Software_Secure_Project/blob/000f2f701ed40aa553c3df
 
 In this version the application users can access to add note page without being logged in, in the application by going to ```/add``` URL. This should not be allowed because without logging in. user does not need to have access to adding page, if they are not logged in. It's mainly good approach to restrict user from accessing funtionalities that they dont have use for, if they are not logged in.
 
-To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view of ```AddNoteView```. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
+To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view of ```AddNoteView``` https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L20. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
 
 
 ### FLAW 4: A06:2021-Vulnerable and Outdated Components
@@ -51,7 +51,8 @@ To fix these kind problems we can apply ```@login_required()``` decorator to top
 
 In the application all users notes can be accessed with the URL ```user/username/notes```. This component introduces vulnerability to the application, because the notes should be personal and only available to the writer. 
 
-To fix this problem,  One solution is to delete the whole view from the user, because all the notes are already displayed when logged in. secondd option is to make use of request.session and check if the user is actually logged to the account that they try to access. It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
+To fix this problem,  One solution is to delete the whole view from the user, because all the notes are already displayed when logged in. secondd option is to make use of request.session and check if the user is actually logged to the account that they try to access. https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L22 
+ It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
 
 
 ### FLAW 5: A03:2021-Injection
@@ -61,4 +62,4 @@ To fix this problem,  One solution is to delete the whole view from the user, be
 
 Injectioning is third most usual security flaw on applications. In injectioning attacker injects malicious code or data to the application, this is mostly possible because the lack of validation or sanitization. Currently the application is vulnurable for XSS attacks, where attacker can inject malicious javascript to the content field because of the lack of validation and sanization.
 
-To fix this the request method in addNote should be checked that it's actually a valid value by checking ```request.method === 'POST'```, so we can be sure that the value is actually submitted from the form. There should be also added |safe filter to prevent special characters being missread by the application. Also using forms that django is providing helps to filter the form data to be correct.
+To fix this the request method in addNote should be checked that it's actually a valid value by checking ```request.method === 'POST'``` https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L22, so we can be sure that the value is actually submitted from the form. There should be also added |safe filter to prevent special characters being missread by the application. Also using forms that django is providing helps to filter the form data to be correct.
