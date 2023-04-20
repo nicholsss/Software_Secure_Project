@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# AXES_FAILURE_LIMIT = 5
 
 INSTALLED_APPS = [
     'django.contrib.admin',

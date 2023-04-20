@@ -21,14 +21,14 @@ To fix this there are multiple ways to make the authentication much harder to be
 
 
 1. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/config/settings.py#L26
-2. https://github.com/nicholsss/Software_Secure_Project/blob/000f2f701ed40aa553c3dfbf7ae12f6eba091ebf/server/config/settings.py#L70
+
 
 Currently in we have debug activated in the application, which means that if the application crashes it provides  detailed error messages, stack traces and more information about the cause of crash for the user of the application. All this information may contain sensitive data, that we dont want to be show to the user. So turning the Debug mode off can we get rid of the detailed the detailed messages, stack traces and the risk of leaking sensitive data on these kinds of situations.
 
 It's good to take note that logging data is important feat for application, because it helps the developers to keep track of  possible failures and bugs in the application. But having logging not done correctly., it might have big side effects for the integrity of the application.
 
 To fix this problem DEBUG mode can simply be disabled. ```DEBUG=false``` Debug mode should only be used in development, and not in production environment. When disabling debug, it's important to add logs for the application, so the developers can notice suspicious actions on application server side.
-
+https://github.com/nicholsss/Software_Secure_Project/blob/000f2f701ed40aa553c3dfbf7ae12f6eba091ebf/server/config/settings.py#L70
 
 
 
@@ -40,7 +40,7 @@ To fix this problem DEBUG mode can simply be disabled. ```DEBUG=false``` Debug m
 
 In this version the application users can access to add note page without being logged in, in the application by going to ```/add``` URL. This should not be allowed because without logging in. user does not need to have access to adding page, if they are not logged in. It's mainly good approach to restrict user from accessing funtionalities that they dont have use for, if they are not logged in.
 
-To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
+To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view of ```AddNoteView```. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
 
 
 ### FLAW 4: A06:2021-Vulnerable and Outdated Components
@@ -59,4 +59,4 @@ To fix this problem,  One solution is to delete the whole view from the user, be
 
 Injectioning is third most usual security flaw on applications. In injectioning attacker injects malicious code or data to the application, this is mostly possible because the lack of validation or sanitization. Currently the application is vulnurable for XSS attacks, where attacker can inject malicious javascript to the content field because of the lack of validation and sanization.
 
-To fix this the request method should be checked that it's actually a valid value by checking ```request.method === 'POST'```, so we can be sure that the value is actually submitted from the form. There should be also added |safe filter to prevent special characters being missread by the application. Also using forms that django is providing helps to filter the form data to be correct.
+To fix this the request method in addNote should be checked that it's actually a valid value by checking ```request.method === 'POST'```, so we can be sure that the value is actually submitted from the form. There should be also added |safe filter to prevent special characters being missread by the application. Also using forms that django is providing helps to filter the form data to be correct.

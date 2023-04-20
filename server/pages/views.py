@@ -17,8 +17,9 @@ def homePageView(request):
 def loginView(request):
     form = AuthenticationForm()
     return render(request, 'pages/login.html', {'form': form})
-
+#login_required
 def addNoteView(request):
+    #if request.method === 'POST':
     content = request.POST.get('content')
     if request.user.is_authenticated:
         user = request.user
@@ -30,7 +31,9 @@ def addNoteView(request):
 
     
 def userNotesView(request, username):
+    #if request.user.username == username:
     user = User.objects.get(username=username)
     notes = Note.objects.filter(user=user)
     return render(request, 'pages/user_notes.html', {'user': user, 'notes': notes})
-
+    #else: 
+    #redirect('home')
