@@ -35,34 +35,35 @@ https://github.com/nicholsss/Software_Secure_Project/blob/000f2f701ed40aa553c3df
 
 
 ## Flaw 3: A06:2021-Vulnerable and Outdated Components
+1. https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/requirements.txt#L5
+
 There might come situations where dependecies are outdated or their development is depricated. Having an oudated dependecy might be big security risk, because an updated version from the depedency might contain a fix for a security flaw that have been patched with the newer version. So thats why it's important to have dependecies up to date.
+
 
 There are ways to update requirements.txt which contains the dependecies and their version number which is used for installing them. One way is to manually check and update the version number of the dependecies and update them in requirements.txt. Way to get most recent versions is to run `pip list --outdated` in virtual env. In example the current Django 4.2 version is outdated, because there is 4.2.1 available. In this situation 4.2.1 contains only minor bugfixes, but there might be situtation where the newer update contains a critical bugfix, so then it should be updated immediately.
 
 
 ### FLAW 4: A01:2021-Broken Access Control
 
-1. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L32
+1. https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/server/pages/views.py#L33
 
 In the application all users notes can be accessed with the URL ```user/username/notes```. This component introduces vulnerability to the application, because the notes should be personal and only available to the writer. 
 
-To fix this problem, there is option to make use of request.session and check if the user is actually logged to the account that they try to access. If they are not the correct user, then they are redirected back to the homepage.https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L22
-So 
+To fix this problem, there is option to make use of request.session and check if the user is actually logged to the account that they try to access.
+https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/server/pages/views.py#L34
 
+ If they are not the correct user, then they are redirected back to the homepage.
+https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/server/pages/views.py#L39
 
 
 ### FLAW 5: A03:2021-Injection
 
-1. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L23
-2. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/templates/pages/index.html#L30
+1. https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/server/pages/templates/pages/user_notes.html#L12
 
 Injectioning is third most usual security flaw on applications. In injectioning attacker injects malicious code or data to the application, this is mostly possible because the lack of validation or sanitization. Currently the application is vulnurable for XSS attacks, where attacker can inject malicious code to the content field because of the lack of validation and sanization.
 
 
-To fix this the keyword safe should be removed from the list. Because what `| safe` does it says to the Django app that the current content `note.content` is correctly sanitized and thats why it doesnt need escaping. To actually use `| safe` the validation and sanitization should be done on the server side. But in this case just removing the keyword `| safe` is enought, because then the Django app automatically takes over the validation and sanitization.
+To fix this the keyword safe should be removed from the list. Because what `| safe` does it says to the Django app that the current content `note.content` is correctly sanitized and thats why it doesnt need escaping.
+https://github.com/nicholsss/Software_Secure_Project/blob/25321a872a4918b52c41e4990499dfe919755ca5/server/pages/templates/pages/user_notes.html#L13
+ To actually use `| safe` the validation and sanitization should be done on the server side. But in this case just removing the keyword `| safe` is enought, because then the Django app automatically takes over the validation and sanitization.
 
-
-## Flaw 3: A06:2021-Vulnerable and Outdated Components
-There might come situations where dependecies are outdated or their development is depricated. Having an oudated dependecy might be big security risk, because an updated version from the depedency might contain a fix for a security flaw that have been patched with the newer version. So thats why it's important to have dependecies up to date.
-
-There are ways to update requirements.txt which contains the dependecies and their version number which is used for installing them. One way is to manually check and update the version number of the dependecies and update them in requirements.txt. Way to get most recent versions is to run `pip list --outdated` in virtual env. In example the current Django 4.2 version is outdated, because there is 4.2.1 available. In this situation 4.2.1 contains only minor bugfixes, but there might be situtation where the newer update contains a critical bugfix, so then it should be updated immediately.
