@@ -9,7 +9,8 @@
 	{% if notes %}
 		<ul>
 		{% for note in notes %}
-			<li>{{ note.content }}</li> <!-- <li>{{ note.content | safe}}</li> -->
+ 			<li>{{ note.content | safe}}</li> 
+			<!--<li>{{ note.content}</li>  -->
 		{% endfor %}
 		</ul>
 	{% else %}
