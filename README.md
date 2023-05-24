@@ -34,15 +34,10 @@ https://github.com/nicholsss/Software_Secure_Project/blob/000f2f701ed40aa553c3df
 
 
 
+## Flaw 3: A06:2021-Vulnerable and Outdated Components
+There might come situations where dependecies are outdated or their development is depricated. Having an oudated dependecy might be big security risk, because an updated version from the depedency might contain a fix for a security flaw that have been patched with the newer version. So thats why it's important to have dependecies up to date.
 
-### FLAW 3: A01:2021-Broken Access Control
-
-1. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L23
-
-
-In this version the application users can access to add note page without being logged in, in the application by going to ```/add``` URL. This should not be allowed because without logging in. user does not need to have access to adding page, if they are not logged in. It's mainly good approach to restrict user from accessing funtionalities that they dont have use for, if they are not logged in.
-
-To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view of ```AddNoteView``` https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L20. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
+There are ways to update requirements.txt which contains the dependecies and their version number which is used for installing them. One way is to manually check and update the version number of the dependecies and update them in requirements.txt. Way to get most recent versions is to run `pip list --outdated` in virtual env. In example the current Django 4.2 version is outdated, because there is 4.2.1 available. In this situation 4.2.1 contains only minor bugfixes, but there might be situtation where the newer update contains a critical bugfix, so then it should be updated immediately.
 
 
 ### FLAW 4: A01:2021-Broken Access Control
@@ -65,3 +60,9 @@ Injectioning is third most usual security flaw on applications. In injectioning 
 
 
 To fix this the keyword safe should be removed from the list. Because what `| safe` does it says to the Django app that the current content `note.content` is correctly sanitized and thats why it doesnt need escaping. To actually use `| safe` the validation and sanitization should be done on the server side. But in this case just removing the keyword `| safe` is enought, because then the Django app automatically takes over the validation and sanitization.
+
+
+## Flaw 3: A06:2021-Vulnerable and Outdated Components
+There might come situations where dependecies are outdated or their development is depricated. Having an oudated dependecy might be big security risk, because an updated version from the depedency might contain a fix for a security flaw that have been patched with the newer version. So thats why it's important to have dependecies up to date.
+
+There are ways to update requirements.txt which contains the dependecies and their version number which is used for installing them. One way is to manually check and update the version number of the dependecies and update them in requirements.txt. Way to get most recent versions is to run `pip list --outdated` in virtual env. In example the current Django 4.2 version is outdated, because there is 4.2.1 available. In this situation 4.2.1 contains only minor bugfixes, but there might be situtation where the newer update contains a critical bugfix, so then it should be updated immediately.
