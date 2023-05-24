@@ -45,14 +45,15 @@ In this version the application users can access to add note page without being 
 To fix these kind problems we can apply ```@login_required()``` decorator to top of the function view of ```AddNoteView``` https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L20. With ```@login_required()``` it is needed to be authenticated to have permission for to view the wanted function view. If user tries to access page with ```@login_required()``` they are redirected back to login form to authenticate. in this situtation adding ```@login_required()``` protects the addNoteView being accessed without authentication.
 
 
-### FLAW 4: A06:2021-Vulnerable and Outdated Components
+### FLAW 4: A01:2021-Broken Access Control
 
 1. https://github.com/nicholsss/Software_Secure_Project/blob/79692dcc5a1d46d203bc07a8250558559fadcb57/server/pages/views.py#L32
 
 In the application all users notes can be accessed with the URL ```user/username/notes```. This component introduces vulnerability to the application, because the notes should be personal and only available to the writer. 
 
-To fix this problem,  One solution is to delete the whole view from the user, because all the notes are already displayed when logged in. secondd option is to make use of request.session and check if the user is actually logged to the account that they try to access. https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L22 
- It is good take note that this problem is related to broken access control, but having an component that has this kind vulnerability is quite big security flaw for the application and must be adressed.
+To fix this problem, there is option to make use of request.session and check if the user is actually logged to the account that they try to access. If they are not the correct user, then they are redirected back to the homepage.https://github.com/nicholsss/Software_Secure_Project/blob/cd4ff4b409df498a6f1e4c443dbe5dab0871a878/server/pages/views.py#L22
+So 
+
 
 
 ### FLAW 5: A03:2021-Injection
